@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoutOut", "ShoutOut\ShoutOut.csproj", "{F76836F3-A467-4EBA-B6B5-118F47F8E00F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {36E1FA2E-33DE-43A2-B78F-721108EA36C4}
+	EndGlobalSection
+EndGlobal
