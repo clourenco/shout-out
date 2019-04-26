@@ -6,12 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ShoutOut.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/v1/[controller]")]
 	[ApiController]
 	public class ValuesController : ControllerBase
 	{
 		// GET api/values
 		[HttpGet]
+		[Route("[Action]")]
 		public ActionResult<IEnumerable<string>> Get()
 		{
 			return new string[] { "value1", "value2" };
