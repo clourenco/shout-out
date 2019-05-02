@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ShoutOut.Domain.Models;
+using ShoutOut.Store;
 
 namespace ShoutOut
 {
@@ -24,15 +26,16 @@ namespace ShoutOut
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddMemoryCache();
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 			services.AddSwaggerGen(options =>
 			{
 				options.DescribeAllEnumsAsStrings();
 				options.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info
 				{
-					Title = "ShoutOut - Simple message board HTTP API",
+					Title = "ShoutOut - Message board",
 					Version = "v1",
-					Description = "A simple message board microservice HTTP API.",
+					Description = "A simple message board HTTP API.",
 					TermsOfService = "The terms of the service"
 				});
 			});
