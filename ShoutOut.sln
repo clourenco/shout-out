@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.539
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoutOut", "ShoutOut\ShoutOut.csproj", "{F76836F3-A467-4EBA-B6B5-118F47F8E00F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoutOut", "ShoutOut\ShoutOut.csproj", "{F76836F3-A467-4EBA-B6B5-118F47F8E00F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoutOut.Domain", "ShoutOut.Domain\ShoutOut.Domain.csproj", "{E273BBB2-9785-4A5A-9D47-9C01361EBCB0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoutOut.Store", "ShoutOut.Store\ShoutOut.Store.csproj", "{06292A32-78D0-4593-9B6D-E5CCF0D31DED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F76836F3-A467-4EBA-B6B5-118F47F8E00F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E273BBB2-9785-4A5A-9D47-9C01361EBCB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E273BBB2-9785-4A5A-9D47-9C01361EBCB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E273BBB2-9785-4A5A-9D47-9C01361EBCB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E273BBB2-9785-4A5A-9D47-9C01361EBCB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06292A32-78D0-4593-9B6D-E5CCF0D31DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06292A32-78D0-4593-9B6D-E5CCF0D31DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06292A32-78D0-4593-9B6D-E5CCF0D31DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06292A32-78D0-4593-9B6D-E5CCF0D31DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
