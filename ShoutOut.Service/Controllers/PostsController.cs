@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using ShoutOut.Data.Entities;
 using ShoutOut.Domain.Models;
 using ShoutOut.Domain.Repositories;
 using ShoutOut.Service.Dtos.Models;
 using System.Collections.Generic;
 using System;
+using ShoutOut.Service.Dtos.Responses;
 
 namespace ShoutOut.Controllers
 {
@@ -84,16 +84,44 @@ namespace ShoutOut.Controllers
 		/// <returns>A newly created post item.</returns>
 		/// <response code="201">Item successfully created.</response>
 		/// <response code="400">Item is null.</response>
+		/// <response code="500">Internal server error.</response>
 		[HttpPost]
 		[ProducesResponseType(201)]
 		[ProducesResponseType(400)]
-		public ActionResult<Post> Post([FromBody] PostCreateDto createDtoItem)
+		[ProducesResponseType(500)]
+		//public ActionResult<Post> Post([FromBody] PostCreateDto createDtoItem)
+		public IActionResult Post([FromBody] PostCreateDto createDtoItem)
 		{
-			Post item = mapper.Map<Post>(createDtoItem);
+			Post item = null;
+			SingleItemResponse<Post> response = null;
 
-			store.Create(item);
+			try
+			{
+				//if (!CheckModelState())
+				//{
+				//	return BadRequest();
+				//}
 
-			return CreatedAtRoute(nameof(GetItem), new { id = item.Id, authorId = StringifyAuthorId(item.AuthorId) }, item);
+				response = new SingleItemResponse<Post>();
+				item = mapper.Map<Post>(createDtoItem);
+
+				store.Create(item);
+
+				response.Model = store.Get(item.Id, item.AuthorId);
+				response.Route = GetPostCreatedUrl(item);
+				response.Message = "The item was successfully created.";
+			}
+			catch (Exception ex)
+			{
+				response = new SingleItemResponse<Post>();
+				response.ErrorRaised = true;
+				response.ErrorMessage = "An internal server error ocurred.";
+
+				return response.ToHttpResponse();
+			}
+
+			return response.ToCreatedHttpResponse();
+			//return CreatedAtRoute(nameof(GetItem), new { id = item.Id, authorId = StringifyAuthorId(item.AuthorId) }, item);
 		}
 
 		// PUT api/posts/5
@@ -118,6 +146,23 @@ namespace ShoutOut.Controllers
 		private string StringifyAuthorId(string authorId)
 		{
 			return authorId.Replace("@", "at").Replace(".", "dot");
+		}
+
+		private bool CheckModelState()
+		{
+			return ModelState.IsValid;
+		}
+
+		private string GetPostCreatedUrl(Post item)
+		{
+			//return $"{Request.Scheme.ToString()}://{Request.Host.ToString()}{Request.Path.ToString()}{item.Id}/author/{StringifyAuthorId(item.AuthorId)}";
+			return String.Format("{0}://{1}{2}/{3}/{4}/{5}",
+					Request.Scheme.ToString(),
+					Request.Host.ToString(),
+					Request.Path.ToString(),
+					item.Id,
+					"author",
+					StringifyAuthorId(item.AuthorId));
 		}
 	}
 
