@@ -6,18 +6,18 @@ namespace ShoutOut.Domain.Models
 {
 	public interface IPost
 	{
-		string Id { get; set; }
+		string Id { get; }
 
-		string AuthorId { get; set; }
+		string AuthorId { get; }
 
-		string Author { get; set; }
+		string Author { get; }
 
-		string Title { get; set; }
+		string Title { get; }
 
-		string Message { get; set; }
+		string Message { get; }
 
-		DateTime Created { get; set; }
+		DateTime? Created { get; }
 
-		DateTime Updated { get; set; }
+		DateTime? Updated { get; }
 	}
 }

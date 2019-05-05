@@ -4,55 +4,30 @@ namespace ShoutOut.Domain.Models
 {
 	public class Post : IPost
 	{
-		private string id;
-		private string authorId;
-		private string author;
-		private string title;
-		private string message;
-		private DateTime created;
-		private DateTime updated;
+		public string Id { get; }
 
-		public string Id
+		public string AuthorId { get; }
+
+		public string Author { get; }
+
+		public string Title { get; }
+
+		public string Message { get; }
+
+		public DateTime? Created { get; }
+
+		public DateTime? Updated { get; }
+
+		public Post(string id, string authorId, string author, string title, string message, DateTime? created, DateTime? updated)
 		{
-			get => id;
-			set => id = value;
-
+			Id = id;
+			AuthorId = authorId;
+			Author = author;
+			Title = title;
+			Message = message;
+			Created = created;
+			Updated = updated;
 		}
 
-		public string AuthorId
-		{
-			get => authorId;
-			set => authorId = value;
-		}
-
-		public string Author
-		{
-			get => author;
-			set => author = value;
-		}
-
-		public string Title
-		{
-			get => title;
-			set => title = value;
-		}
-
-		public string Message
-		{
-			get => message;
-			set => message = value;
-		}
-
-		public DateTime Created
-		{
-			get => created;
-			set => created = value;
-		}
-
-		public DateTime Updated
-		{
-			get => updated;
-			set => updated = value;
-		}
 	}
 }

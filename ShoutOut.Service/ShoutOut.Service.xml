@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShoutOut.Service</name>
+    </assembly>
+    <members>
+        <member name="M:ShoutOut.Controllers.PostsController.Post(ShoutOut.Service.Dtos.Models.PostCreateDto)">
+             <summary>
+             Creates a post item.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/posts
+            		{
+            			"authorId": "ironman@mail.com",
+            			"author": "Tony Stark",
+            			"title": "Ironman",
+            			"message": "Tony Stark is ironman."
+            		}
+            
+             </remarks>
+             <param name="createDtoItem"></param>
+             <returns>A newly created post item.</returns>
+             <response code="201">Item successfully created.</response>
+             <response code="400">Item is null.</response>
+        </member>
+    </members>
+</doc>
