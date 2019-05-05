@@ -6,7 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShoutOut.Data.Stores;
 using ShoutOut.Domain.Repositories;
-using ShoutOut.Service.Dtos.Responses.Interfaces;
 using System;
 using System.IO;
 using System.Reflection;
@@ -29,7 +28,6 @@ namespace ShoutOut
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 			services.AddSingleton<IPostRepository, PostStore>();
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
 			services.AddSwaggerGen(options =>
 			{
 				options.DescribeAllEnumsAsStrings();

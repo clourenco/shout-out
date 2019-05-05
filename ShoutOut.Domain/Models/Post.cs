@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ShoutOut.Domain.Models
 {
 	public class Post : IPost
@@ -21,22 +20,14 @@ namespace ShoutOut.Domain.Models
 
 		public Post(string id, string authorId, string author, string title, string message, DateTime? created, DateTime? updated)
 		{
-			Id = id ?? throw new ArgumentNullException(nameof(id));
-
-			AuthorId = authorId ?? throw new ArgumentNullException(nameof(authorId));
-			AuthorId = authorId.Length < 8 || authorId.Length > 50 ? throw new ArgumentException($"{nameof(authorId)} invalid length") : authorId;
-
-			Author = author ?? throw new ArgumentNullException(nameof(author));
-			Author = author.Length < 1 || author.Length > 50 ? throw new ArgumentException($"{nameof(author)} invalid length") : author;
-
-			Title = title ?? throw new ArgumentNullException(nameof(title));
-			Title = title.Length < 1 || title.Length > 100 ? throw new ArgumentException($"{nameof(title)} invalid length") : title;
-
-			Message = message ?? throw new ArgumentNullException(nameof(message));
-			Message = authorId.Length < 1 || authorId.Length > 1000 ? throw new ArgumentException($"{nameof(authorId)} invalid length") : authorId;
-
+			Id = id;
+			AuthorId = authorId;
+			Author = author;
+			Title = title;
+			Message = message;
 			Created = created;
 			Updated = updated;
 		}
+
 	}
 }
