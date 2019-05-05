@@ -24,6 +24,7 @@
              <returns>A newly created post item.</returns>
              <response code="201">Item successfully created.</response>
              <response code="400">Item is null.</response>
+             <response code="500">Internal server error.</response>
         </member>
     </members>
 </doc>
