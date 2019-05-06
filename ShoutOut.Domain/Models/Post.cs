@@ -33,7 +33,7 @@ namespace ShoutOut.Domain.Models
 			Title = title.Length < 1 || title.Length > 100 ? throw new ArgumentException($"{nameof(title)} invalid length") : title;
 
 			Message = message ?? throw new ArgumentNullException(nameof(message));
-			Message = authorId.Length < 1 || authorId.Length > 1000 ? throw new ArgumentException($"{nameof(authorId)} invalid length") : authorId;
+			Message = message.Length < 1 || message.Length > 1000 ? throw new ArgumentException($"{nameof(message)} invalid length") : message;
 
 			Created = created;
 			Updated = updated;
