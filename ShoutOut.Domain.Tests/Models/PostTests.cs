@@ -9,21 +9,21 @@ namespace ShoutOut.Domain.Tests
 	{
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void CreateNewInstanceOfPostTest_WhenIdParameterIsNull_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenIdParameterIsNull_ReturnsArgumentNullException()
 		{
 			new Post(null, "johndoeatmaildotcom", "John Doe", "Who's John Doe?", "I'm John Doe.", DateTime.Now, DateTime.Now);
 		}
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void CreateNewInstanceOfPostTest_WhenAuthorIdParameterIsNull_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenAuthorIdParameterIsNull_ReturnsArgumentNullException()
 		{
 			new Post(Guid.NewGuid().ToString("N"), null, "John Doe", "Who's John Doe?", "I'm John Doe.", DateTime.Now, DateTime.Now);
 		}
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void CreateNewInstanceOfPostTest_WhenAuthorParameterIsNull_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenAuthorParameterIsNull_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"), 
@@ -37,7 +37,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void CreateNewInstanceOfPostTest_WhenTitleParameterIsNull_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenTitleParameterIsNull_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"), 
@@ -51,7 +51,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentNullException))]
-		public void CreateNewInstanceOfPostTest_WhenMessageParameterIsNull_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenMessageParameterIsNull_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"), 
@@ -65,7 +65,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenAuthorIdParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentException()
+		public void PostNewInstanceTest_WhenAuthorIdParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"), 
@@ -79,7 +79,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenAuthorIdParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentException()
+		public void PostNewInstanceTest_WhenAuthorIdParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"),
@@ -93,7 +93,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenAuthorParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenAuthorParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"), 
@@ -107,7 +107,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenAuthorParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenAuthorParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"), 
@@ -121,7 +121,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenTitleParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenTitleParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"),
@@ -135,7 +135,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenTitleParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenTitleParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"),
@@ -149,7 +149,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenMessageParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenMessageParameterLengthIsSmallerThanMinimumAllowed_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"),
@@ -163,7 +163,7 @@ namespace ShoutOut.Domain.Tests
 
 		[TestMethod]
 		[ExpectedException(typeof(ArgumentException))]
-		public void CreateNewInstanceOfPostTest_WhenMessageParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentNullException()
+		public void PostNewInstanceTest_WhenMessageParameterLengthIsBiggerThanMaximumAllowed_ReturnsArgumentNullException()
 		{
 			new Post(
 				Guid.NewGuid().ToString("N"),
@@ -176,7 +176,7 @@ namespace ShoutOut.Domain.Tests
 		}
 
 		[TestMethod]
-		public void CreateNewInstanceOfPostTest_WhenAllParametersAreValid_ReturnsInstanceOfPost()
+		public void PostNewInstanceTest_WhenAllParametersAreValid_ReturnsInstanceOfPost()
 		{
 			Post thePost = new Post(
 								Guid.NewGuid().ToString("N"),

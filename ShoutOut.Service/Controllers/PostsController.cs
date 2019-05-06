@@ -33,45 +33,22 @@ namespace ShoutOut.Controllers
 
 		#region Fields
 
-		//private IMemoryCache cache;
-		//private PostStore store = null;
 		private readonly IMapper mapper;
 		private readonly IPostRepository store;
 
 		#endregion
 
-		#region Public methods
-
-		//public PostsController(IMemoryCache memoryCache)
-		//{
-		//	//if (store == null)
-		//	//{
-		//	//	store = new PostStore();
-		//	//}
-
-		//	cache = memoryCache;
-
-		//	if (!cache.TryGetValue("_PostStore", out store))
-		//	{
-		//		store = new PostStore();
-
-		//		var cacheEntryOptions = new MemoryCacheEntryOptions();
-		//		cacheEntryOptions.SetSlidingExpiration(TimeSpan.FromSeconds(28800));
-		//		cacheEntryOptions.AbsoluteExpiration = DateTime.MaxValue;
-
-		//		cache.Set("_PostStore", store, cacheEntryOptions);
-		//	}
-		//	else
-		//	{
-		//		store = (PostStore)cache.Get("_PostStore");
-		//	}
-		//}
+		#region Constructor
 
 		public PostsController(IPostRepository postRepository, IMapper postMapper)
 		{
-			mapper = postMapper;
-			store = postRepository;
+			mapper = postMapper ?? throw new ArgumentNullException(nameof(postRepository));
+			store = postRepository ?? throw new ArgumentNullException(nameof(postRepository));
 		}
+
+		#endregion
+
+		#region Public methods
 
 		/// <summary>
 		/// Retrieves posts.

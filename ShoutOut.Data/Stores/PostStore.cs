@@ -11,15 +11,24 @@ namespace ShoutOut.Data.Stores
 {
 	public class PostStore : IPostRepository
 	{
+		#region Private fields
+
 		private ICollection<EntityPost> internalStore;
 		private readonly IMapper mapper;
 
-		public PostStore(IMapper postMapper)
+		#endregion
+
+		#region Constructor
+
+		public PostStore(IMapper postMapper, ICollection<EntityPost> store = null)
 		{
-			postMapper = postMapper ?? throw new ArgumentNullException(nameof(postMapper));
-			mapper = postMapper;
-			internalStore = new Collection<EntityPost>();
+			mapper = postMapper ?? throw new ArgumentNullException(nameof(postMapper));
+			internalStore = store ?? new Collection<EntityPost>();
 		}
+
+		#endregion
+
+		#region Public methods
 
 		public ICollection<Post> GetAll()
 		{
@@ -34,43 +43,59 @@ namespace ShoutOut.Data.Stores
 					GetEntityItem(id, authorId));
 		}
 
-		public void Create(Post item)
+		public void Create(Post post)
 		{
-			EntityPost itemToAdd = mapper.Map<EntityPost>(item);
+			CheckParameter<Post>(post, nameof(post));
+
+			EntityPost itemToAdd = mapper.Map<EntityPost>(post);
 			internalStore.Add(itemToAdd);
 		}
 
 		public bool Delete(string id, string authorId)
 		{
+			CheckParameter<string>(id, nameof(id));
+			CheckParameter<string>(authorId, nameof(authorId));
+
 			EntityPost item = GetEntityItem(id, authorId);
 			return internalStore.Remove(item);
 		}
 
-		public void Update(string id, string authorId, Post item)
+		public void Update(string id, string authorId, Post post)
 		{
-			if (!Exists(id, authorId))
-			{
-				throw new InvalidOperationException($"The post with id {id} belonging to the author {authorId} does not exist.");
-			}
+			CheckParameter<string>(id, nameof(id));
+			CheckParameter<string>(authorId, nameof(authorId));
+			CheckParameter<Post>(post, nameof(post));
 
 			bool updated = false;
 			EntityPost itemToUpdate = GetEntityItem(id, authorId);
 
-			if (!String.IsNullOrEmpty(item.Title) && itemToUpdate.Title != item.Title)
+			if (!String.IsNullOrEmpty(post.Title) && itemToUpdate.Title != post.Title)
 			{
-				itemToUpdate.Title = item.Title;
+				itemToUpdate.Title = post.Title;
 				updated = true;
 			}
 
-			if (!String.IsNullOrEmpty(item.Message) && itemToUpdate.Message != item.Message)
+			if (!String.IsNullOrEmpty(post.Message) && itemToUpdate.Message != post.Message)
 			{
-				itemToUpdate.Message = item.Message;
+				itemToUpdate.Message = post.Message;
 				updated = true;
 			}
 
 			if (updated)
 			{
-				itemToUpdate.Updated = item.Updated ?? DateTime.Now;
+				itemToUpdate.Updated = post.Updated ?? DateTime.Now;
+			}
+		}
+
+		#endregion
+
+		#region Private methods
+
+		private void CheckParameter<T>(T param, string paramName)
+		{
+			if (param == null)
+			{
+				throw new ArgumentNullException(paramName);
 			}
 		}
 
@@ -89,5 +114,6 @@ namespace ShoutOut.Data.Stores
 			return internalStore.First(p => p.Id == id && p.AuthorId == authorId);
 		}
 
+		#endregion
 	}
 }

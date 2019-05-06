@@ -16,4 +16,10 @@
     <Folder Include="Responses\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShoutOut.Data\ShoutOut.Data.csproj" />
+    <ProjectReference Include="..\ShoutOut.Domain\ShoutOut.Domain.csproj" />
+    <ProjectReference Include="..\ShoutOut.Service\ShoutOut.Service.csproj" />
+  </ItemGroup>
+
 </Project>
