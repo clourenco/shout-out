@@ -4,9 +4,28 @@
         <name>ShoutOut.Service</name>
     </assembly>
     <members>
+        <member name="M:ShoutOut.Controllers.PostsController.GetAll">
+            <summary>
+            Retrieves posts.
+            </summary>
+            <returns>A response with a collection of post items.</returns>
+            <response code="200">Items sucessfully retrieved.</response>
+            <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:ShoutOut.Controllers.PostsController.GetItem(System.String,System.String)">
+            <summary>
+            Retrieves a post by id and author id.
+            </summary>
+            <param name="id">Id of the post to retrieve.</param>
+            <param name="authorId">Author id of the post to retrieve.</param>
+            <returns>A response including the post item.</returns>
+            <response code="200">Item sucessfully retrieved.</response>
+            <response code="404">Item does not exist.</response>
+            <response code="500">Internal server error.</response> 
+        </member>
         <member name="M:ShoutOut.Controllers.PostsController.Post(ShoutOut.Service.Dtos.Models.PostCreateDto)">
              <summary>
-             Creates a post item.
+             Creates a post.
              </summary>
              <remarks>
              Sample request:
@@ -20,11 +39,45 @@
             		}
             
              </remarks>
-             <param name="createDtoItem"></param>
-             <returns>A newly created post item.</returns>
+             <param name="createDtoItem">Request model to create a post.</param>
+             <returns>A response including the newly created post item.</returns>
              <response code="201">Item successfully created.</response>
              <response code="400">Item is null.</response>
              <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:ShoutOut.Controllers.PostsController.Put(System.String,System.String,ShoutOut.Service.Dtos.Models.PostUpdateDto)">
+             <summary>
+             Updates a post.
+             </summary>
+             <remarks>
+             Sample request:
+            
+                 POST api/posts/{id}/author/{authorId}
+            		{
+            			"title": "Avengers",
+            			"message": "Ironman is one of the avengers."
+            		}
+            
+             </remarks>
+             <param name="id">Id of the post to update.</param>
+             <param name="authorId">Author id of the post to update.</param>
+             <param name="updateDtoItem">Request model to update a post.</param>
+             <returns>A response with the updated post item.</returns>
+             <response code="200">Item successfully updated.</response>
+             <response code="400">Item is null</response>
+             <response code="404">Item does not exist.</response>
+             <response code="500">Internal server error.</response>
+        </member>
+        <member name="M:ShoutOut.Controllers.PostsController.Delete(System.String,System.String)">
+            <summary>
+            Deletes a post.
+            </summary>
+            <param name="id">The id of the post to delete.</param>
+            <param name="authorId">The author id of the post to delete.</param>
+            <returns>A response indicating if the delete was successful.</returns>
+            <response code="200">Item deleted successfully.</response>
+            <response code="404">Item does not exist.</response>
+            <response code="500">Internal server error.</response>
         </member>
     </members>
 </doc>

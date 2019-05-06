@@ -42,7 +42,7 @@ namespace ShoutOut.Service.Dtos.Responses
 			};
 		}
 
-		public static IActionResult ToCreatedHttpResponse<TModel>(this ISingleItemResponse<TModel> response)
+		public static IActionResult ToCreateOrUpdateHttpResponse<TModel>(this ISingleItemResponse<TModel> response)
 		{
 			var status = HttpStatusCode.Created;
 

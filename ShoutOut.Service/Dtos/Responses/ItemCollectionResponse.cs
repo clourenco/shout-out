@@ -10,6 +10,6 @@ namespace ShoutOut.Service.Dtos.Responses.Interfaces
 		public ICollection<TModel> Model { get; set; }
 		public string Message { get; set; }
 		public bool ErrorRaised { get; set; }
-		public string ErrorMessage { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+		public string ErrorMessage { get; set; }
 	}
 }
