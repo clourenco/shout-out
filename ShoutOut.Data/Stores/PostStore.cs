@@ -16,15 +16,13 @@ namespace ShoutOut.Data.Stores
 
 		public PostStore(IMapper postMapper)
 		{
+			postMapper = postMapper ?? throw new ArgumentNullException(nameof(postMapper));
 			mapper = postMapper;
 			internalStore = new Collection<EntityPost>();
 		}
 
 		public ICollection<Post> GetAll()
 		{
-			//return internalStore
-			//		.Select(p => new Post(p.Id, p.AuthorId, p.Author, p.Title, p.Message, p.Created, p.Updated))
-			//			.ToList();
 			return internalStore
 					.Select(p => mapper.Map<Post>(p))
 						.ToList();
@@ -50,7 +48,7 @@ namespace ShoutOut.Data.Stores
 
 		public void Update(string id, string authorId, Post item)
 		{
-			if (!Exists(id, item.AuthorId))
+			if (!Exists(id, authorId))
 			{
 				throw new InvalidOperationException($"The post with id {id} belonging to the author {authorId} does not exist.");
 			}
@@ -58,13 +56,13 @@ namespace ShoutOut.Data.Stores
 			bool updated = false;
 			EntityPost itemToUpdate = GetEntityItem(id, authorId);
 
-			if (!String.IsNullOrEmpty(item.Title))
+			if (!String.IsNullOrEmpty(item.Title) && itemToUpdate.Title != item.Title)
 			{
 				itemToUpdate.Title = item.Title;
 				updated = true;
 			}
 
-			if (!String.IsNullOrEmpty(item.Message))
+			if (!String.IsNullOrEmpty(item.Message) && itemToUpdate.Message != item.Message)
 			{
 				itemToUpdate.Message = item.Message;
 				updated = true;
@@ -76,20 +74,9 @@ namespace ShoutOut.Data.Stores
 			}
 		}
 
-		private bool Exists(string id, string authorId = "")
+		private bool Exists(string id, string authorId)
 		{
-			bool retVal = false;
-
-			if (!String.IsNullOrEmpty(authorId))
-			{
-				retVal = internalStore.Any(p => p.Id == id && p.AuthorId == authorId);
-			}
-			else
-			{
-				retVal = internalStore.Any(p => p.Id == id);
-			}
-
-			return retVal;
+			return internalStore.Any(p => p.Id == id && p.AuthorId == authorId);
 		}
 
 		private EntityPost GetEntityItem(string id, string authorId)
